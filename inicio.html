@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ConstantRise</title>
+    <link rel="shortcut icon" type="image/x-icon" href="https://i.im.ge/2025/10/30/nkgeWM.Constant-Rise.jpeg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset e estilos base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #2E86AB;
+            --secondary: #2b8152;
+            --accent: #F18F01;
+            --light: #F7F9FC;
+            --dark: #2B2D42;
+            --gray: #8D99AE;
+            --success: #4CAF50;
+            --warning: #FFC107;
+            --danger: #EF476F;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark);
+            line-height: 1.6;
+            display: flex;
+            min-height: 100vh;
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1.5rem 0;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .logo-container {
+            text-align: center;
+            padding: 0 1.5rem 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 1.5rem;
+        }
+        
+        .logo {
+            max-width: 160px;
+            height: auto;
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+            padding: 0 1.5rem 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 1.5rem;
+        }
+        
+        .user-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-right: 1rem;
+        }
+        
+        .user-details h3 {
+            font-size: 1rem;
+            margin-bottom: 0.2rem;
+        }
+        
+        .user-details p {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+        
+        .nav-menu {
+            list-style: none;
+            padding: 0 1rem;
+        }
+        
+        .nav-item {
+            margin-bottom: 0.5rem;
+        }
+        
+        .nav-link {
+            display: flex;
+            align-items: center;
+            padding: 0.8rem 1rem;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .nav-link i {
+            margin-right: 0.8rem;
+            font-size: 1.1rem;
+            width: 20px;
+            text-align: center;
+        }
+        
+        /* Conteúdo principal */
+        .main-content {
+            flex: 1;
+            margin-left: 250px;
+            padding: 1.5rem;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .page-title {
+            color: var(--primary);
+            font-size: 1.8rem;
+        }
+        
+        .header-actions {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .btn {
+            padding: 0.6rem 1.2rem;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Cards de métricas */
+        .metrics-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .metric-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: center;
+        }
+        
+        .metric-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .metric-1 .metric-icon {
+            background-color: rgba(46, 134, 171, 0.1);
+            color: var(--primary);
+        }
+        
+        .metric-2 .metric-icon {
+            background-color: rgba(162, 59, 114, 0.1);
+            color: var(--secondary);
+        }
+        
+        .metric-3 .metric-icon {
+            background-color: rgba(241, 143, 1, 0.1);
+            color: var(--accent);
+        }
+        
+        .metric-4 .metric-icon {
+            background-color: rgba(76, 175, 80, 0.1);
+            color: var(--success);
+        }
+        
+        .metric-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.2rem;
+        }
+        
+        .metric-info p {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+        
+        /* Seções de conteúdo */
+        .content-section {
+            margin-bottom: 2rem;
+        }
+        
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .section-title {
+            color: var(--dark);
+            font-size: 1.4rem;
+        }
+        
+        .section-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card-header {
+            padding: 1.2rem;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        
+        .card-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+        
+        .card-1 .card-icon {
+            background-color: var(--primary);
+        }
+        
+        .card-2 .card-icon {
+            background-color: var(--secondary);
+        }
+        
+        .card-3 .card-icon {
+            background-color: var(--accent);
+        }
+        
+        .card-4 .card-icon {
+            background-color: var(--success);
+        }
+        
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        
+        .card-body {
+            padding: 1.2rem;
+        }
+        
+        .card-text {
+            color: var(--gray);
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .progress-bar {
+            height: 8px;
+            background-color: #e0e0e0;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+        
+        .progress {
+            height: 100%;
+            border-radius: 4px;
+        }
+        
+        .progress-1 {
+            background-color: var(--primary);
+            width: 75%;
+        }
+        
+        .progress-2 {
+            background-color: var(--secondary);
+            width: 60%;
+        }
+        
+        .progress-3 {
+            background-color: var(--accent);
+            width: 45%;
+        }
+        
+        .progress-4 {
+            background-color: var(--success);
+            width: 85%;
+        }
+        
+        .card-footer {
+            padding: 1rem 1.2rem;
+            border-top: 1px solid #f0f0f0;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .card-footer .btn {
+            padding: 0.4rem 0.8rem;
+            font-size: 0.8rem;
+        }
+        
+        /* Tabela de atividades recentes */
+        .activity-table {
+            width: 100%;
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        
+        .activity-table th, .activity-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .activity-table th {
+            background-color: #f8f9fa;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        .activity-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 0.3rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .status-completed {
+            background-color: rgba(76, 175, 80, 0.1);
+            color: var(--success);
+        }
+        
+        .status-pending {
+            background-color: rgba(255, 193, 7, 0.1);
+            color: var(--warning);
+        }
+        
+        .status-in-progress {
+            background-color: rgba(46, 134, 171, 0.1);
+            color: var(--primary);
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            color: var(--gray);
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        /* Responsividade */
+        @media (max-width: 992px) {
+            .sidebar {
+                width: 70px;
+            }
+            
+            .sidebar .logo-text, .sidebar .user-details, .sidebar .nav-link span {
+                display: none;
+            }
+            
+            .sidebar .nav-link {
+                justify-content: center;
+            }
+            
+            .sidebar .nav-link i {
+                margin-right: 0;
+                font-size: 1.3rem;
+            }
+            
+            .main-content {
+                margin-left: 70px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .metrics-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .cards-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            
+            .header-actions {
+                width: 100%;
+                justify-content: space-between;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .metrics-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .main-content {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <aside class="sidebar">
+       
+        
+        <div class="user-info">
+            <div class="user-avatar">JS</div>
+            <div class="user-details">
+                <h3>Seu Nome</h3>
+            </div>
+        </div>
+        
+        <ul class="nav-menu">
+            <li class="nav-item">
+                <a href="#" class="nav-link active">
+                    <i class="fas fa-home"></i>
+                    <span>Inicio</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="fas fa-dumbbell"></i>
+                    <span>Meus Treinos</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="fas fa-utensils"></i>
+                    <span>Nutrição</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Progresso</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Agenda</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="fas fa-user-md"></i>
+                    <span>Profissionais</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="fas fa-cog"></i>
+                    <span>Configurações</span>
+                </a>
+            </li>
+        </ul>
+    </aside>
+
+    <!-- Conteúdo Principal -->
+    <main class="main-content">
+        <header class="header">
+            <h1 class="page-title">Início</h1>
+            <div class="header-actions">
+                <a href="#" class="btn btn-outline">
+                    <i class="fas fa-bell"></i>
+                    Notificações
+                </a>
+                <a href="index.html" class="btn btn-primary">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Sair
+                </a>
+            </div>
+        </header>
+
+        <!-- Métricas -->
+        <div class="metrics-container">
+            <div class="metric-card metric-1">
+                <div class="metric-icon">
+                    <i class="fas fa-fire"></i>
+                </div>
+                <div class="metric-info">
+                    <h3>1,250</h3>
+                    <p>Calorias Queimadas</p>
+                </div>
+            </div>
+            
+            <div class="metric-card metric-2">
+                <div class="metric-icon">
+                    <i class="fas fa-running"></i>
+                </div>
+                <div class="metric-info">
+                    <h3>8,542</h3>
+                    <p>Passos Hoje</p>
+                </div>
+            </div>
+            
+            <div class="metric-card metric-3">
+                <div class="metric-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <div class="metric-info">
+                    <h3>45min</h3>
+                    <p>Tempo de Exercício</p>
+                </div>
+            </div>
+            
+            <div class="metric-card metric-4">
+                <div class="metric-icon">
+                    <i class="fas fa-weight"></i>
+                </div>
+                <div class="metric-info">
+                    <h3>74.5kg</h3>
+                    <p>Peso Atual</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Seção de Treinos -->
+        <section class="content-section">
+            <div class="section-header">
+                <h2 class="section-title">Meus Treinos</h2>
+                <a href="#" class="section-link">
+                    Ver todos <i class="fas fa-chevron-right"></i>
+                </a>
+            </div>
+            
+            <div class="cards-container">
+                <div class="card card-1">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-dumbbell"></i>
+                        </div>
+                        <h3 class="card-title">Superiores</h3>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">Treino de peito, ombros e costas com foco em hipertrofia.</p>
+                        <div class="progress-bar">
+                            <div class="progress progress-1"></div>
+                        </div>
+                        <p>Progresso: 75% concluído</p>
+                    </div>
+                    <div class="card-footer">
+                        <span>Próximo: 12/10</span>
+                        <a href="#" class="btn btn-primary">Iniciar</a>
+                    </div>
+                </div>
+                
+                <div class="card card-2">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-walking"></i>
+                        </div>
+                        <h3 class="card-title">Inferiores</h3>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">Treino de pernas com ênfase em força e resistência.</p>
+                        <div class="progress-bar">
+                            <div class="progress progress-2"></div>
+                        </div>
+                        <p>Progresso: 60% concluído</p>
+                    </div>
+                    <div class="card-footer">
+                        <span>Próximo: 14/10</span>
+                        <a href="#" class="btn btn-primary">Iniciar</a>
+                    </div>
+                </div>
+                
+                <div class="card card-3">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h3 class="card-title">Cardio</h3>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">Sessão de cardio para melhorar resistência cardiovascular.</p>
+                        <div class="progress-bar">
+                            <div class="progress progress-3"></div>
+                        </div>
+                        <p>Progresso: 45% concluído</p>
+                    </div>
+                    <div class="card-footer">
+                        <span>Próximo: Amanhã</span>
+                        <a href="#" class="btn btn-primary">Iniciar</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Nutrição -->
+        <section class="content-section">
+            <div class="section-header">
+                <h2 class="section-title">Plano Alimentar</h2>
+                <a href="#" class="section-link">
+                    Ver detalhes <i class="fas fa-chevron-right"></i>
+                </a>
+            </div>
+            
+            <div class="cards-container">
+                <div class="card card-4">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-apple-alt"></i>
+                        </div>
+                        <h3 class="card-title">Dieta de Manutenção</h3>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">Plano alimentar balanceado para manutenção do peso atual.</p>
+                        <div class="progress-bar">
+                            <div class="progress progress-4"></div>
+                        </div>
+                        <p>Meta diária: 85% atingida</p>
+                    </div>
+                    <div class="card-footer">
+                        <span>2,150 kcal</span>
+                        <a href="#" class="btn btn-primary">Ajustar</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Atividades Recentes -->
+        <section class="content-section">
+            <div class="section-header">
+                <h2 class="section-title">Atividades Recentes</h2>
+            </div>
+            
+            <table class="activity-table">
+                <thead>
+                    <tr>
+                        <th>Atividade</th>
+                        <th>Data</th>
+                        <th>Duração</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Treino de Superiores</td>
+                        <td>10/10/2023</td>
+                        <td>55 min</td>
+                        <td><span class="status-badge status-completed">Concluído</span></td>
+                    </tr>
+                    <tr>
+                        <td>Sessão de Cardio</td>
+                        <td>09/10/2023</td>
+                        <td>40 min</td>
+                        <td><span class="status-badge status-completed">Concluído</span></td>
+                    </tr>
+                    <tr>
+                        <td>Consulta Nutricional</td>
+                        <td>08/10/2023</td>
+                        <td>30 min</td>
+                        <td><span class="status-badge status-completed">Concluído</span></td>
+                    </tr>
+                    <tr>
+                        <td>Treino de Inferiores</td>
+                        <td>07/10/2023</td>
+                        <td>65 min</td>
+                        <td><span class="status-badge status-in-progress">Em Andamento</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+    </main>
+</body>
+</html>

@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ConstantRise </title>
+    <link rel="shortcut icon" type="image/x-icon" href="https://i.im.ge/2025/10/30/nkgeWM.Constant-Rise.jpeg">
+    <style>
+        /* Reset e estilos base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #2E86AB;
+            --secondary: #2b8152;
+            --accent: #F18F01;
+            --light: #F7F9FC;
+            --dark: #2B2D42;
+            --success: #4CAF50;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        /* Header e navegação */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+
+        .logo-container {
+            margin-bottom: 1.5rem;
+        }
+
+        .logo {
+            max-width: 200px;
+            height: auto;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+
+        /* Seções principais */
+        section {
+            padding: 3rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--primary);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent);
+            margin: 0.5rem auto;
+        }
+
+        /* Botões */
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary);
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Como funciona */
+        .steps-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .step {
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+            padding: 1.5rem;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: var(--accent);
+            color: white;
+            border-radius: 50%;
+            line-height: 40px;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        /* Benefícios */
+        .benefits-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .benefit-category {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .benefit-category h3 {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--light);
+        }
+
+        .benefit-category ul {
+            list-style-type: none;
+        }
+
+        .benefit-category li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .benefit-category li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--success);
+            font-weight: bold;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-top: 3rem;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+
+            .steps-container,
+            .benefits-container {
+                grid-template-columns: 1fr;
+            }
+
+            .btn-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="https://i.im.ge/2025/10/30/nkgeWM.Constant-Rise.jpeg" alt="ConstantRise" class="logo">
+        </div>
+        <p class="tagline">
+            Plataforma multidisciplinar de saúde e bem-estar. Conectamos professores, alunos em formação e usuários
+            para promover conhecimento e bem-estar através de aulas, conteúdos, exercícios personalizados, entre
+            outros.
+        </p>
+    </header>
+
+    <main>
+        <section class="cta-section">
+            <div class="btn-container">
+                <a href="entrar.html" class="btn btn-primary">Entrar</a>
+                <a href="cadastro.html" class="btn btn-secondary">Inscreva-se</a>
+            </div>
+        </section>
+
+        <section class="how-it-works">
+            <h2 class="section-title">Como funciona</h2>
+            <div class="steps-container">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Cadastre-se</h3>
+                    <p>Crie sua conta gratuitamente em poucos minutos</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Preencha seu perfil</h3>
+                    <p>Informe seus objetivos de saúde e preferências pessoais</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Receba conteúdos</h3>
+                    <p>Acesse materiais personalizados para suas necessidades</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Acompanhe seu progresso</h3>
+                    <p>Monitore sua evolução com orientações profissionais</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="benefits">
+            <h2 class="section-title">Benefícios</h2>
+            <div class="benefits-container">
+                <div class="benefit-category">
+                    <h3>Treinos Personalizados</h3>
+                    <ul>
+                        <li>Treinos adaptados ao seu perfil</li>
+                        <li>Exercícios seguros e eficazes</li>
+                        <li>Acompanhamento de progresso</li>
+                    </ul>
+                </div>
+                <div class="benefit-category">
+                    <h3>Nutrição</h3>
+                    <ul>
+                        <li>Valores nutricionais detalhados</li>
+                        <li>Dietas para bulking e cutting</li>
+                        <li>Planos alimentares customizados</li>
+                    </ul>
+                </div>
+                <div class="benefit-category">
+                    <h3>Sisteterapia</h3>
+                    <ul>
+                        <li>Alongamentos personalizados</li>
+                        <li>Treinos preventivos</li>
+                        <li>Exercícios terapêuticos</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+</body>
+
+</html>
