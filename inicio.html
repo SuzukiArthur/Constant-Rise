@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>ConstantRise</title>
     <link rel="shortcut icon" type="image/x-icon" href="https://i.im.ge/2025/10/30/nkgeWM.Constant-Rise.jpeg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -484,60 +484,56 @@
                 padding: 1rem;
             }
         }
+
+        /* Tab content handling (doesn't change visual) */
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+
     </style>
 </head>
 
 <body>
     <!-- Sidebar -->
     <aside class="sidebar">
-       
-        
         <div class="user-info">
             <div class="user-avatar">JS</div>
             <div class="user-details">
                 <h3>Seu Nome</h3>
             </div>
         </div>
-        
+
         <ul class="nav-menu">
+            <!-- note: href kept for semantics; data-target used by JS -->
             <li class="nav-item">
-                <a href="#" class="nav-link active">
+                <a href="#inicio" class="nav-link active" data-target="dashboard">
                     <i class="fas fa-home"></i>
                     <span>Inicio</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="#treinos" class="nav-link" data-target="treinos">
                     <i class="fas fa-dumbbell"></i>
                     <span>Meus Treinos</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="#nutricao" class="nav-link" data-target="nutricao">
                     <i class="fas fa-utensils"></i>
                     <span>Nutrição</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link">
-                    <i class="fas fa-chart-line"></i>
-                    <span>Progresso</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">
-                    <i class="fas fa-calendar-alt"></i>
-                    <span>Agenda</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="#profissionais" class="nav-link" data-target="profissionais">
                     <i class="fas fa-user-md"></i>
                     <span>Profissionais</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="#config" class="nav-link" data-target="config">
                     <i class="fas fa-cog"></i>
                     <span>Configurações</span>
                 </a>
@@ -547,211 +543,476 @@
 
     <!-- Conteúdo Principal -->
     <main class="main-content">
-        <header class="header">
-            <h1 class="page-title">Início</h1>
-            <div class="header-actions">
-                <a href="#" class="btn btn-outline">
-                    <i class="fas fa-bell"></i>
-                    Notificações
-                </a>
-                <a href="index.html" class="btn btn-primary">
-                    <i class="fas fa-sign-out-alt"></i>
-                    Sair
-                </a>
-            </div>
-        </header>
 
-        <!-- Métricas -->
-        <div class="metrics-container">
-            <div class="metric-card metric-1">
-                <div class="metric-icon">
-                    <i class="fas fa-fire"></i>
+        <!-- ---------- DASHBOARD ORIGINAL (aba padrão) ---------- -->
+        <section id="dashboard" class="tab-content active">
+            <header class="header">
+                <h1 class="page-title">Início</h1>
+                <div class="header-actions">
+                    <a href="#notificacoes" class="btn btn-outline" data-target="notificacoes">
+                        <i class="fas fa-bell"></i>
+                        Notificações
+                    </a>
+                    <a href="index.html" class="btn btn-primary">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Sair
+                    </a>
                 </div>
-                <div class="metric-info">
-                    <h3>1,250</h3>
-                    <p>Calorias Queimadas</p>
-                </div>
-            </div>
-            
-            <div class="metric-card metric-2">
-                <div class="metric-icon">
-                    <i class="fas fa-running"></i>
-                </div>
-                <div class="metric-info">
-                    <h3>8,542</h3>
-                    <p>Passos Hoje</p>
-                </div>
-            </div>
-            
-            <div class="metric-card metric-3">
-                <div class="metric-icon">
-                    <i class="fas fa-clock"></i>
-                </div>
-                <div class="metric-info">
-                    <h3>45min</h3>
-                    <p>Tempo de Exercício</p>
-                </div>
-            </div>
-            
-            <div class="metric-card metric-4">
-                <div class="metric-icon">
-                    <i class="fas fa-weight"></i>
-                </div>
-                <div class="metric-info">
-                    <h3>74.5kg</h3>
-                    <p>Peso Atual</p>
-                </div>
-            </div>
-        </div>
+            </header>
 
-        <!-- Seção de Treinos -->
-        <section class="content-section">
-            <div class="section-header">
-                <h2 class="section-title">Meus Treinos</h2>
-                <a href="#" class="section-link">
-                    Ver todos <i class="fas fa-chevron-right"></i>
-                </a>
-            </div>
-            
-            <div class="cards-container">
-                <div class="card card-1">
-                    <div class="card-header">
-                        <div class="card-icon">
-                            <i class="fas fa-dumbbell"></i>
-                        </div>
-                        <h3 class="card-title">Superiores</h3>
+            <!-- Métricas -->
+            <div class="metrics-container">
+                <div class="metric-card metric-1">
+                    <div class="metric-icon">
+                        <i class="fas fa-fire"></i>
                     </div>
-                    <div class="card-body">
-                        <p class="card-text">Treino de peito, ombros e costas com foco em hipertrofia.</p>
-                        <div class="progress-bar">
-                            <div class="progress progress-1"></div>
-                        </div>
-                        <p>Progresso: 75% concluído</p>
-                    </div>
-                    <div class="card-footer">
-                        <span>Próximo: 12/10</span>
-                        <a href="#" class="btn btn-primary">Iniciar</a>
+                    <div class="metric-info">
+                        <h3>1,250</h3>
+                        <p>Calorias Queimadas</p>
                     </div>
                 </div>
                 
-                <div class="card card-2">
-                    <div class="card-header">
-                        <div class="card-icon">
-                            <i class="fas fa-walking"></i>
-                        </div>
-                        <h3 class="card-title">Inferiores</h3>
+                <div class="metric-card metric-2">
+                    <div class="metric-icon">
+                        <i class="fas fa-running"></i>
                     </div>
-                    <div class="card-body">
-                        <p class="card-text">Treino de pernas com ênfase em força e resistência.</p>
-                        <div class="progress-bar">
-                            <div class="progress progress-2"></div>
-                        </div>
-                        <p>Progresso: 60% concluído</p>
-                    </div>
-                    <div class="card-footer">
-                        <span>Próximo: 14/10</span>
-                        <a href="#" class="btn btn-primary">Iniciar</a>
+                    <div class="metric-info">
+                        <h3>8,542</h3>
+                        <p>Passos Hoje</p>
                     </div>
                 </div>
                 
-                <div class="card card-3">
-                    <div class="card-header">
-                        <div class="card-icon">
-                            <i class="fas fa-heart"></i>
-                        </div>
-                        <h3 class="card-title">Cardio</h3>
+                <div class="metric-card metric-3">
+                    <div class="metric-icon">
+                        <i class="fas fa-clock"></i>
                     </div>
-                    <div class="card-body">
-                        <p class="card-text">Sessão de cardio para melhorar resistência cardiovascular.</p>
-                        <div class="progress-bar">
-                            <div class="progress progress-3"></div>
-                        </div>
-                        <p>Progresso: 45% concluído</p>
+                    <div class="metric-info">
+                        <h3>45min</h3>
+                        <p>Tempo de Exercício</p>
                     </div>
-                    <div class="card-footer">
-                        <span>Próximo: Amanhã</span>
-                        <a href="#" class="btn btn-primary">Iniciar</a>
+                </div>
+                
+                <div class="metric-card metric-4">
+                    <div class="metric-icon">
+                        <i class="fas fa-weight"></i>
+                    </div>
+                    <div class="metric-info">
+                        <h3>74.5kg</h3>
+                        <p>Peso Atual</p>
                     </div>
                 </div>
             </div>
-        </section>
 
-        <!-- Seção de Nutrição -->
-        <section class="content-section">
-            <div class="section-header">
-                <h2 class="section-title">Plano Alimentar</h2>
-                <a href="#" class="section-link">
-                    Ver detalhes <i class="fas fa-chevron-right"></i>
-                </a>
-            </div>
-            
-            <div class="cards-container">
-                <div class="card card-4">
-                    <div class="card-header">
-                        <div class="card-icon">
-                            <i class="fas fa-apple-alt"></i>
+            <!-- Seção de Treinos (original do dashboard) -->
+            <section class="content-section">
+                <div class="section-header">
+                    <h2 class="section-title">Meus Treinos</h2>
+                    <a href="#" class="section-link" data-target="treinos">
+                        Ver todos <i class="fas fa-chevron-right"></i>
+                    </a>
+                </div>
+                
+                <div class="cards-container">
+                    <div class="card card-1">
+                        <div class="card-header">
+                            <div class="card-icon">
+                                <i class="fas fa-dumbbell"></i>
+                            </div>
+                            <h3 class="card-title">Superiores</h3>
                         </div>
-                        <h3 class="card-title">Dieta de Manutenção</h3>
-                    </div>
-                    <div class="card-body">
-                        <p class="card-text">Plano alimentar balanceado para manutenção do peso atual.</p>
-                        <div class="progress-bar">
-                            <div class="progress progress-4"></div>
+                        <div class="card-body">
+                            <p class="card-text">Treino de peito, ombros e costas com foco em hipertrofia.</p>
+                            <div class="progress-bar">
+                                <div class="progress progress-1"></div>
+                            </div>
+                            <p>Progresso: 75% concluído</p>
                         </div>
-                        <p>Meta diária: 85% atingida</p>
+                        <div class="card-footer">
+                            <span>Próximo: 12/10</span>
+                            <a href="#" class="btn btn-primary">Iniciar</a>
+                        </div>
                     </div>
-                    <div class="card-footer">
-                        <span>2,150 kcal</span>
-                        <a href="#" class="btn btn-primary">Ajustar</a>
+                    
+                    <div class="card card-2">
+                        <div class="card-header">
+                            <div class="card-icon">
+                                <i class="fas fa-walking"></i>
+                            </div>
+                            <h3 class="card-title">Inferiores</h3>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">Treino de pernas com ênfase em força e resistência.</p>
+                            <div class="progress-bar">
+                                <div class="progress progress-2"></div>
+                            </div>
+                            <p>Progresso: 60% concluído</p>
+                        </div>
+                        <div class="card-footer">
+                            <span>Próximo: 14/10</span>
+                            <a href="#" class="btn btn-primary">Iniciar</a>
+                        </div>
+                    </div>
+                    
+                    <div class="card card-3">
+                        <div class="card-header">
+                            <div class="card-icon">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                            <h3 class="card-title">Cardio</h3>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">Sessão de cardio para melhorar resistência cardiovascular.</p>
+                            <div class="progress-bar">
+                                <div class="progress progress-3"></div>
+                            </div>
+                            <p>Progresso: 45% concluído</p>
+                        </div>
+                        <div class="card-footer">
+                            <span>Próximo: Amanhã</span>
+                            <a href="#" class="btn btn-primary">Iniciar</a>
+                        </div>
                     </div>
                 </div>
+            </section>
+
+            <!-- Seção de Nutrição (original do dashboard) -->
+            <section class="content-section">
+                <div class="section-header">
+                    <h2 class="section-title">Plano Alimentar</h2>
+                </div>
+                
+                <div class="cards-container">
+                    <div class="card card-4">
+                        <div class="card-header">
+                            <div class="card-icon">
+                                <i class="fas fa-apple-alt"></i>
+                            </div>
+                            <h3 class="card-title">Dieta de Manutenção</h3>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">Plano alimentar balanceado para manutenção do peso atual.</p>
+                            <div class="progress-bar">
+                                <div class="progress progress-4"></div>
+                            </div>
+                            <p>Meta diária: 85% atingida</p>
+                        </div>
+                        <div class="card-footer">
+                            <span>2,150 kcal</span>
+                            <a href="#" class="btn btn-primary">Ajustar</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Atividades Recentes -->
+            <section class="content-section">
+                <div class="section-header">
+                    <h2 class="section-title">Atividades Recentes</h2>
+                </div>
+                
+                <table class="activity-table">
+                    <thead>
+                        <tr>
+                            <th>Atividade</th>
+                            <th>Data</th>
+                            <th>Duração</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Treino de Superiores</td>
+                            <td>10/10/2023</td>
+                            <td>55 min</td>
+                            <td><span class="status-badge status-completed">Concluído</span></td>
+                        </tr>
+                        <tr>
+                            <td>Sessão de Cardio</td>
+                            <td>09/10/2023</td>
+                            <td>40 min</td>
+                            <td><span class="status-badge status-completed">Concluído</span></td>
+                        </tr>
+                        <tr>
+                            <td>Consulta Nutricional</td>
+                            <td>08/10/2023</td>
+                            <td>30 min</td>
+                            <td><span class="status-badge status-completed">Concluído</span></td>
+                        </tr>
+                        <tr>
+                            <td>Treino de Inferiores</td>
+                            <td>07/10/2023</td>
+                            <td>65 min</td>
+                            <td><span class="status-badge status-in-progress">Em Andamento</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </section>
+        <!-- ---------- /DASHBOARD ORIGINAL ---------- -->
+
+        <!-- ---------- NOVAS SEÇÕES (abas) inseridas sem alterar o visual ---------- -->
+        <!-- Cada uma começa oculta; o JS controla qual está ativa. -->
+
+        <section id="treinos" class="tab-content">
+            <header class="header">
+                <h1 class="page-title">Meus Treinos</h1>
+            </header>
+            <section class="content-section">
+                <div class="section-header">
+                    <h2 class="section-title">Meus Treinos</h2>
+                    <a href="#" class="section-link" data-target="treinos">
+                        Ver todos <i class="fas fa-chevron-right"></i>
+                    </a>
+                </div>
+                
+                <div class="cards-container">
+                    <div class="card card-1">
+                        <div class="card-header">
+                            <div class="card-icon">
+                                <i class="fas fa-dumbbell"></i>
+                            </div>
+                            <h3 class="card-title">Superiores</h3>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">Treino de peito, ombros e costas com foco em hipertrofia.</p>
+                            <div class="progress-bar">
+                                <div class="progress progress-1"></div>
+                            </div>
+                            <p>Progresso: 75% concluído</p>
+                        </div>
+                        <div class="card-footer">
+                            <span>Próximo: 12/10</span>
+                            <a href="#" class="btn btn-primary">Iniciar</a>
+                        </div>
+                    </div>
+                    
+                    <div class="card card-2">
+                        <div class="card-header">
+                            <div class="card-icon">
+                                <i class="fas fa-walking"></i>
+                            </div>
+                            <h3 class="card-title">Inferiores</h3>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">Treino de pernas com ênfase em força e resistência.</p>
+                            <div class="progress-bar">
+                                <div class="progress progress-2"></div>
+                            </div>
+                            <p>Progresso: 60% concluído</p>
+                        </div>
+                        <div class="card-footer">
+                            <span>Próximo: 14/10</span>
+                            <a href="#" class="btn btn-primary">Iniciar</a>
+                        </div>
+                    </div>
+                    
+                    <div class="card card-3">
+                        <div class="card-header">
+                            <div class="card-icon">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                            <h3 class="card-title">Cardio</h3>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">Sessão de cardio para melhorar resistência cardiovascular.</p>
+                            <div class="progress-bar">
+                                <div class="progress progress-3"></div>
+                            </div>
+                            <p>Progresso: 45% concluído</p>
+                        </div>
+                        <div class="card-footer">
+                            <span>Próximo: Amanhã</span>
+                            <a href="#" class="btn btn-primary">Iniciar</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </section>
+
+        <section id="nutricao" class="tab-content">
+            <section class="content-section">
+                <div class="section-header">
+                    <h2 class="section-title">Plano Alimentar</h2>
+                </div>
+                
+                <div class="cards-container">
+                    <div class="card card-4">
+                        <div class="card-header">
+                            <div class="card-icon">
+                                <i class="fas fa-apple-alt"></i>
+                            </div>
+                            <h3 class="card-title">Dieta de Manutenção</h3>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">Plano alimentar balanceado para manutenção do peso atual.</p>
+                            <div class="progress-bar">
+                                <div class="progress progress-4"></div>
+                            </div>
+                            <p>Meta diária: 85% atingida</p>
+                        </div>
+                        <div class="card-footer">
+                            <span>2,150 kcal</span>
+                            <a href="#" class="btn btn-primary">Ajustar</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        <section id="profissionais" class="tab-content">
+            <header class="header">
+                <h1 class="page-title">Meus Treinos</h1>
+            </header>
+            <section class="content-section">
+                <div class="section-header">
+                    <h2 class="section-title">Meus Treinos</h2>
+                    <a href="#" class="section-link" data-target="treinos">
+                        Ver todos <i class="fas fa-chevron-right"></i>
+                    </a>
+                </div>
+                
+                <div class="cards-container">
+                    <div class="card card-1">
+                        <div class="card-header">
+                            <div class="card-icon">
+                                <i class="fas fa-dumbbell"></i>
+                            </div>
+                            <h3 class="card-title">Superiores</h3>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">Treino de peito, ombros e costas com foco em hipertrofia.</p>
+                            <div class="progress-bar">
+                                <div class="progress progress-1"></div>
+                            </div>
+                            <p>Progresso: 75% concluído</p>
+                        </div>
+                        <div class="card-footer">
+                            <span>Próximo: 12/10</span>
+                            <a href="#" class="btn btn-primary">Iniciar</a>
+                        </div>
+                    </div>
+                    
+                    <div class="card card-2">
+                        <div class="card-header">
+                            <div class="card-icon">
+                                <i class="fas fa-walking"></i>
+                            </div>
+                            <h3 class="card-title">Inferiores</h3>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">Treino de pernas com ênfase em força e resistência.</p>
+                            <div class="progress-bar">
+                                <div class="progress progress-2"></div>
+                            </div>
+                            <p>Progresso: 60% concluído</p>
+                        </div>
+                        <div class="card-footer">
+                            <span>Próximo: 14/10</span>
+                            <a href="#" class="btn btn-primary">Iniciar</a>
+                        </div>
+                    </div>
+                    
+                    <div class="card card-3">
+                        <div class="card-header">
+                            <div class="card-icon">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                            <h3 class="card-title">Cardio</h3>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">Sessão de cardio para melhorar resistência cardiovascular.</p>
+                            <div class="progress-bar">
+                                <div class="progress progress-3"></div>
+                            </div>
+                            <p>Progresso: 45% concluído</p>
+                        </div>
+                        <div class="card-footer">
+                            <span>Próximo: Amanhã</span>
+                            <a href="#" class="btn btn-primary">Iniciar</a>
+                        </div>
+                    </div>
+                </div>
+        </section>
+
+        <section id="config" class="tab-content">
+            <header class="header">
+                <h1 class="page-title">Configurações</h1>
+            </header>
+            <div class="content-section">
+                <p>• Alterar senha<br>• Trocar foto de perfil<br>• Preferências de notificação<br>• Privacidade e dados</p>
+                <p>Personalize sua experiência como desejar.</p>
             </div>
         </section>
 
-        <!-- Atividades Recentes -->
-        <section class="content-section">
-            <div class="section-header">
-                <h2 class="section-title">Atividades Recentes</h2>
+        <section id="notificacoes" class="tab-content">
+            <header class="header">
+                <h1 class="page-title">Notificações</h1>
+            </header>
+            <div class="content-section">
+                <p>• Treino de hoje disponível<br>• Você atingiu 85% da sua meta nutricional<br>• Atualização no plano alimentar</p>
             </div>
-            
-            <table class="activity-table">
-                <thead>
-                    <tr>
-                        <th>Atividade</th>
-                        <th>Data</th>
-                        <th>Duração</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Treino de Superiores</td>
-                        <td>10/10/2023</td>
-                        <td>55 min</td>
-                        <td><span class="status-badge status-completed">Concluído</span></td>
-                    </tr>
-                    <tr>
-                        <td>Sessão de Cardio</td>
-                        <td>09/10/2023</td>
-                        <td>40 min</td>
-                        <td><span class="status-badge status-completed">Concluído</span></td>
-                    </tr>
-                    <tr>
-                        <td>Consulta Nutricional</td>
-                        <td>08/10/2023</td>
-                        <td>30 min</td>
-                        <td><span class="status-badge status-completed">Concluído</span></td>
-                    </tr>
-                    <tr>
-                        <td>Treino de Inferiores</td>
-                        <td>07/10/2023</td>
-                        <td>65 min</td>
-                        <td><span class="status-badge status-in-progress">Em Andamento</span></td>
-                    </tr>
-                </tbody>
-            </table>
         </section>
 
     </main>
+
+    <script>
+        // Script de tabs controladas pelo menu lateral.
+        (function() {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            function showTab(id) {
+                tabContents.forEach(tc => {
+                    if (tc.id === id) {
+                        tc.classList.add('active');
+                    } else {
+                        tc.classList.remove('active');
+                    }
+                });
+            }
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    // Prevent default navigation (hashchange is optional)
+                    e.preventDefault();
+
+                    // Manage active class in the sidebar links
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+
+                    const target = this.getAttribute('data-target');
+                    if (target) {
+                        showTab(target);
+                        // update URL hash for direct-linking without reload (optional)
+                        // but keep this unobtrusive — doesn't force reload
+                        history.replaceState(null, '', '#' + (this.getAttribute('href') || target));
+                    }
+                });
+            });
+
+            // Optional: if user opens with a hash, show that tab automatically
+            const initialHash = location.hash.replace('#','');
+            if (initialHash) {
+                // Find nav link that matches this hash (by href) or section id
+                let matched = false;
+                navLinks.forEach(l => {
+                    const href = l.getAttribute('href') ? l.getAttribute('href').replace('#','') : '';
+                    const dt = l.getAttribute('data-target');
+                    if (href === initialHash || dt === initialHash) {
+                        l.classList.add('active');
+                        showTab(dt || href);
+                        matched = true;
+                    }
+                });
+                // If no match, keep dashboard as default
+                if (!matched) {
+                    showTab('dashboard');
+                }
+            } else {
+                // No hash: ensure dashboard is visible
+                showTab('dashboard');
+            }
+        })();
+    </script>
 </body>
 </html>
